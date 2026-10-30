@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Techova Solutions</title>
+<meta name="description" content="Techova Solutions builds AI agents that run inside your own cloud: FinOps, DataOps and operations agents with human approval built in.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one column page; hero pairs the pitch with a live agent run log, then numbered process, cards only for agents. */
+:root {
+  --bg: #F5F7F8;
+  --surface: #FFFFFF;
+  --ink: #14212B;
+  --muted: #536472;
+  --line: #D9E1E6;
+  --accent: #0B6E87;
+  --accent-ink: #FFFFFF;
+  --signal: #A86A0A;
+  --ok: #1F7A4D;
+  --code-bg: #0F1B24;
+  --code-fg: #D6E4EC;
+  --code-dim: #7F98A8;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --step--1: 0.875rem; --step-0: 1rem; --step-1: 1.25rem; --step-2: 1.6rem; --step-3: 2.2rem; --step-4: clamp(2.3rem, 5vw, 3.6rem);
+  --radius: 10px;
+  --wrap: 72rem;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0E171D; --surface: #15222B; --ink: #E6EEF2; --muted: #9DB0BC; --line: #26363F;
+  --accent: #4FB8D3; --accent-ink: #062029; --signal: #E3A94A; --ok: #5CC98D;
+  --code-bg: #08111A; --code-fg: #D6E4EC; --code-dim: #7F98A8; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0E171D; --surface: #15222B; --ink: #E6EEF2; --muted: #9DB0BC; --line: #26363F;
+  --accent: #4FB8D3; --accent-ink: #062029; --signal: #E3A94A; --ok: #5CC98D;
+  --code-bg: #08111A; --code-fg: #D6E4EC; --code-dim: #7F98A8; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6; }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.12; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+p { margin: 0; }
+.eyebrow { font-family: var(--font-mono); font-size: var(--step--1); letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+
+/* Header */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+header.site { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.85rem; }
+.brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--ink); font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; }
+.brand svg { width: 28px; height: 28px; flex: none; }
+nav.primary { display: flex; gap: 1.4rem; align-items: center; flex-wrap: wrap; }
+nav.primary a { color: var(--muted); text-decoration: none; font-size: var(--step--1); font-weight: 500; }
+nav.primary a:hover { color: var(--ink); }
+nav.primary a.cta { color: var(--accent-ink); background: var(--accent); padding: 0.45rem 0.9rem; border-radius: 999px; }
+@media (max-width: 44rem) { nav.primary a:not(.cta) { display: none; } }
+
+/* Hero */
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 3rem; align-items: center; padding-block: 4.5rem 4rem; }
+.hero h1 { font-size: var(--step-4); margin-top: 0.8rem; }
+.hero .lede { font-size: var(--step-1); color: var(--muted); margin-top: 1.25rem; max-width: 34rem; line-height: 1.5; }
+.actions { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 2rem; }
+.btn { display: inline-flex; align-items: center; gap: 0.4rem; font: 600 var(--step-0)/1 var(--font-body); padding: 0.85rem 1.25rem; border-radius: 999px; text-decoration: none; border: 1px solid var(--accent); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); }
+.btn.ghost { color: var(--accent); background: transparent; }
+@media (max-width: 56rem) { .hero .wrap { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; padding-block: 3rem; } }
+
+/* Run log */
+.runlog { background: var(--code-bg); color: var(--code-fg); border-radius: var(--radius); font-family: var(--font-mono); font-size: 0.82rem; line-height: 1.65; overflow: hidden; box-shadow: 0 18px 40px -24px rgba(8, 20, 28, 0.55); min-width: 0; }
+.runlog .bar { display: flex; justify-content: space-between; gap: 1rem; padding: 0.7rem 1rem; border-bottom: 1px solid rgba(214, 228, 236, 0.12); color: var(--code-dim); font-size: 0.75rem; }
+.runlog ol { list-style: none; margin: 0; padding: 0.9rem 1rem 1.1rem; display: grid; gap: 0.35rem; overflow-x: auto; }
+.runlog li { display: grid; grid-template-columns: 4.2rem minmax(0, 1fr); gap: 0.6rem; }
+.runlog .t { color: var(--code-dim); }
+.runlog .tool { color: #7FD0E6; }
+.runlog .warn { color: #F0B860; }
+.runlog .good { color: #7FD8A4; }
+.runlog .wait { display: inline-block; margin-top: 0.2rem; padding: 0.1rem 0.5rem; border: 1px solid #F0B860; border-radius: 999px; color: #F0B860; font-size: 0.72rem; }
+@media (prefers-reduced-motion: no-preference) {
+  .runlog li { animation: rise 0.5s cubic-bezier(.2,.7,.2,1) both; }
+  .runlog li:nth-child(2) { animation-delay: .12s } .runlog li:nth-child(3) { animation-delay: .24s }
+  .runlog li:nth-child(4) { animation-delay: .36s } .runlog li:nth-child(5) { animation-delay: .48s }
+  .runlog li:nth-child(6) { animation-delay: .6s } .runlog li:nth-child(7) { animation-delay: .72s }
+  @keyframes rise { from { opacity: .35; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+}
+.caption { font-size: var(--step--1); color: var(--muted); margin-top: 0.7rem; }
+
+/* Sections */
+section.block { padding-block: 4.5rem; border-top: 1px solid var(--line); }
+section.block h2 { font-size: var(--step-3); margin-top: 0.6rem; max-width: 40rem; }
+section.block .intro { color: var(--muted); max-width: 40rem; margin-top: 0.9rem; font-size: 1.05rem; }
+
+.principles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: 2rem 2.5rem; margin-top: 2.5rem; }
+.principle h3 { font-size: var(--step-1); }
+.principle p { color: var(--muted); margin-top: 0.5rem; }
+.principle svg { width: 26px; height: 26px; color: var(--accent); margin-bottom: 0.8rem; }
+
+.agents { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 1.25rem; margin-top: 2.5rem; }
+.agent { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.9rem; min-width: 0; }
+.agent .head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; }
+.agent h3 { font-size: var(--step-1); }
+.status { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.15rem 0.55rem; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; }
+.status.build { color: var(--signal); }
+.status.poc { color: var(--accent); }
+.status.offer { color: var(--ok); }
+.agent p { color: var(--muted); }
+.agent dl { margin: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.35rem 0.9rem; font-size: var(--step--1); border-top: 1px solid var(--line); padding-top: 0.9rem; margin-top: auto; }
+.agent dt { font-family: var(--font-mono); color: var(--muted); font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.04em; padding-top: 0.1rem; }
+.agent dd { margin: 0; }
+
+.steps { list-style: none; padding: 0; margin: 2.5rem 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: 1.5rem; counter-reset: s; }
+.steps li { counter-increment: s; border-top: 2px solid var(--ink); padding-top: 1rem; }
+.steps li::before { content: "Step " counter(s); font-family: var(--font-mono); font-size: 0.76rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+.steps h3 { font-size: var(--step-1); margin-top: 0.4rem; }
+.steps .dur { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); margin-top: 0.2rem; }
+.steps p { color: var(--muted); margin-top: 0.6rem; }
+
+.stack { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: 1.75rem; margin-top: 2.5rem; }
+.stack h3 { font-family: var(--font-mono); font-weight: 500; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.stack ul { list-style: none; padding: 0; margin: 0.7rem 0 0; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.stack li { border: 1px solid var(--line); background: var(--surface); border-radius: 6px; padding: 0.25rem 0.6rem; font-size: var(--step--1); }
+
+.contact .wrap { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 3rem; align-items: start; }
+@media (max-width: 52rem) { .contact .wrap { grid-template-columns: minmax(0, 1fr); } }
+.contact-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem; display: grid; gap: 1.1rem; min-width: 0; }
+.contact-card .label { font-family: var(--font-mono); font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+.contact-card .value { font-size: var(--step-1); font-weight: 500; overflow-wrap: anywhere; user-select: all; }
+.contact-card address { font-style: normal; color: var(--ink); }
+.copy { font: 500 var(--step--1) var(--font-body); color: var(--accent); background: none; border: 1px solid var(--line); border-radius: 999px; padding: 0.3rem 0.8rem; cursor: pointer; margin-top: 0.4rem; }
+.ask-list { margin: 1.4rem 0 0; padding-left: 1.2rem; color: var(--muted); display: grid; gap: 0.4rem; }
+
+footer.site { border-top: 1px solid var(--line); }
+footer.site .wrap { padding-block: 2rem; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; color: var(--muted); font-size: var(--step--1); }
+footer.site nav { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+footer.site a { color: var(--muted); }
+</style>
+</head>
+<body>
+
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Techova Solutions home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="8" fill="var(--accent)"/><path d="M9 11h14M16 11v12" stroke="var(--accent-ink)" stroke-width="3" stroke-linecap="round" fill="none"/><circle cx="23" cy="22" r="2.6" fill="var(--signal)"/></svg>
+      Techova Solutions
+    </a>
+    <nav class="primary" aria-label="Main">
+      <a href="#agents">Agents</a>
+      <a href="#approach">How we work</a>
+      <a href="#stack">Stack</a>
+      <a class="cta" href="#contact">Start a project</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">AI agents for cloud and data teams</div>
+        <h1>AI agents that work inside your own cloud</h1>
+        <p class="lede">We design and build AI agents that read your cost, infrastructure and data platforms, explain what changed, and propose fixes your engineers approve. Your data stays in your tenant.</p>
+        <div class="actions">
+          <a class="btn primary" href="#contact">Book a discovery call</a>
+          <a class="btn ghost" href="#agents">See the agents</a>
+        </div>
+      </div>
+      <figure style="margin:0; min-width:0">
+        <div class="runlog" role="img" aria-label="Example run log of a FinOps agent finding an oversized VM and opening a pull request for approval">
+          <div class="bar"><span>finops-agent · daily run</span><span>06:00 UTC</span></div>
+          <ol>
+            <li><span class="t">06:00:02</span><span><span class="tool">query_cost</span>(scope="sub-prod", window="7d")</span></li>
+            <li><span class="t">06:00:05</span><span class="warn">Spend +37% week over week (€290 → €398)</span></li>
+            <li><span class="t">06:00:07</span><span><span class="tool">activity_log</span>: vm-app-prod-02 resized D4s_v5 → D16s_v5</span></li>
+            <li><span class="t">06:00:09</span><span><span class="tool">get_metrics</span>: avg CPU 9%, peak 21% since resize</span></li>
+            <li><span class="t">06:00:11</span><span><span class="tool">price_whatif</span>: revert saves about €300 / month</span></li>
+            <li><span class="t">06:00:14</span><span class="good">Draft PR opened: modules/web/vm.tf</span></li>
+            <li><span class="t">06:00:14</span><span><span class="wait">Waiting for human approval</span></span></li>
+          </ol>
+        </div>
+        <figcaption class="caption">Illustrative run of our FinOps agent on sample data.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="block" id="principles">
+    <div class="wrap">
+      <div class="eyebrow">What makes our agents different</div>
+      <h2>Built the way infrastructure teams already work</h2>
+      <div class="principles">
+        <div class="principle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4v5c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg>
+          <h3>Runs in your tenant</h3>
+          <p>Agents deploy into your Azure subscription or Databricks workspace. Billing, logs and data never leave your environment.</p>
+        </div>
+        <div class="principle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="12" r="2.5"/><path d="M6 8.5v7M8.3 7.2l7.4 3.6"/></svg>
+          <h3>Changes arrive as pull requests</h3>
+          <p>Agents use read-only identities. Every fix is a Terraform or code change that your team reviews and merges.</p>
+        </div>
+        <div class="principle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5M4 19h16"/><path d="M8 15l3-4 3 2 4-6"/></svg>
+          <h3>Every answer shows its evidence</h3>
+          <p>Each explanation names the resource, the change and the metric behind it, with the query it ran, so numbers can be checked.</p>
+        </div>
+        <div class="principle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/></svg>
+          <h3>Tested before trusted</h3>
+          <p>We ship an evaluation set with every agent, so you can see how often it is right and what each answer costs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="agents">
+    <div class="wrap">
+      <div class="eyebrow">Agents</div>
+      <h2>Agents we build</h2>
+      <p class="intro">Each one starts from a working pattern we have built ourselves, then gets adapted to your platforms and rules.</p>
+      <div class="agents">
+        <article class="agent">
+          <div class="head"><h3>FinOps agent</h3><span class="status build">In development</span></div>
+          <p>Watches Azure cost every day, links each spike to the resource and change that caused it, and drafts rightsizing and cleanup fixes with savings priced in euros.</p>
+          <dl>
+            <dt>Reads</dt><dd>Cost exports, Resource Graph, Azure Monitor, Activity Log, Advisor</dd>
+            <dt>Delivers</dt><dd>Power BI report, daily digest, Terraform PRs</dd>
+          </dl>
+        </article>
+        <article class="agent">
+          <div class="head"><h3>Meeting intelligence</h3><span class="status poc">Proof of concept</span></div>
+          <p>Summarises meeting transcripts and tracks decisions and actions across meetings, running privately on your own Azure or Databricks platform.</p>
+          <dl>
+            <dt>Reads</dt><dd>Meeting transcripts you choose to share</dd>
+            <dt>Delivers</dt><dd>Summaries, action tracker, cross-meeting search</dd>
+          </dl>
+        </article>
+        <article class="agent">
+          <div class="head"><h3>DataOps agent</h3><span class="status offer">Available to build</span></div>
+          <p>Monitors Databricks jobs and pipelines, diagnoses failures from logs and lineage, and proposes a fix or a rerun plan for an engineer to approve.</p>
+          <dl>
+            <dt>Reads</dt><dd>Job runs, cluster logs, Unity Catalog lineage</dd>
+            <dt>Delivers</dt><dd>Root-cause notes, alerts, fix PRs</dd>
+          </dl>
+        </article>
+        <article class="agent">
+          <div class="head"><h3>Platform operations agent</h3><span class="status offer">Available to build</span></div>
+          <p>Answers questions about your cloud estate in plain language and checks drift, tagging and policy against your Terraform code.</p>
+          <dl>
+            <dt>Reads</dt><dd>Terraform state, Azure Policy, Resource Graph</dd>
+            <dt>Delivers</dt><dd>Chat assistant, drift reports, compliance PRs</dd>
+          </dl>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="approach">
+    <div class="wrap">
+      <div class="eyebrow">How we work</div>
+      <h2>From first call to an agent in production</h2>
+      <ol class="steps">
+        <li>
+          <h3>Discovery</h3>
+          <div class="dur">1 to 2 weeks</div>
+          <p>We map one costly, repetitive task, the data it needs and the approval rules, and agree how success is measured.</p>
+        </li>
+        <li>
+          <h3>Pilot agent</h3>
+          <div class="dur">4 to 6 weeks</div>
+          <p>A working agent on your real data, read-only, with an evaluation set and a cost estimate per run.</p>
+        </li>
+        <li>
+          <h3>Production</h3>
+          <div class="dur">4 to 8 weeks</div>
+          <p>Infrastructure as code, CI/CD, monitoring, guardrails and handover documentation your team can own.</p>
+        </li>
+        <li>
+          <h3>Run and improve</h3>
+          <div class="dur">Ongoing, optional</div>
+          <p>Support across time zones, new tools for the agent, and regular reviews of accuracy and cost.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="stack">
+    <div class="wrap">
+      <div class="eyebrow">Stack</div>
+      <h2>Tools we build with</h2>
+      <div class="stack">
+        <div><h3>Models</h3><ul><li>Claude</li><li>Azure OpenAI</li><li>Open-weight models</li></ul></div>
+        <div><h3>Agent frameworks</h3><ul><li>Claude Agent SDK</li><li>LangGraph</li><li>Microsoft Agent Framework</li><li>MCP</li></ul></div>
+        <div><h3>Data</h3><ul><li>Azure Databricks</li><li>Delta Lake</li><li>Azure SQL</li><li>Power BI</li></ul></div>
+        <div><h3>Platform</h3><ul><li>Azure</li><li>Terraform</li><li>Azure DevOps</li><li>GitHub Actions</li><li>Python</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block contact" id="contact">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">Contact</div>
+        <h2>Tell us about the task you want an agent to take over</h2>
+        <p class="intro">A short email is enough. These details help us reply with something concrete:</p>
+        <ul class="ask-list">
+          <li>The task and who does it today</li>
+          <li>Where the data lives (Azure, Databricks, other)</li>
+          <li>What the agent may and may not change</li>
+        </ul>
+      </div>
+      <div class="contact-card">
+        <div>
+          <div class="label">Email</div>
+          <div class="value" id="email"><a href="mailto:techovasolutions@gmail.com">techovasolutions@gmail.com</a></div>
+          <button class="copy" type="button" id="copy-email">Copy email</button>
+        </div>
+        <div>
+          <div class="label">Registered office</div>
+          <address>Techova Solutions LLP<br>102/14, Amrut Siddhi, SBI Bank Road<br>Kalyan, Maharashtra 421605, India</address>
+        </div>
+        <div>
+          <div class="label">Working hours</div>
+          <div>Remote, with coverage across India, Europe and US time zones</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© <span id="year">2026</span> Techova Solutions LLP</span>
+    <nav aria-label="Footer">
+      <a href="#agents">Agents</a>
+      <a href="#approach">How we work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('copy-email').addEventListener('click', async (e) => {
+    const btn = e.currentTarget, text = document.getElementById('email').textContent.trim();
+    try { await navigator.clipboard.writeText(text); btn.textContent = 'Copied'; }
+    catch { const r = document.createRange(); r.selectNodeContents(document.getElementById('email')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected, press Ctrl+C'; }
+    setTimeout(() => { btn.textContent = 'Copy email'; }, 2200);
+  });
+</script>
+
+</body>
+</html>
