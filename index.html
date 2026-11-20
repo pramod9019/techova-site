@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Techova Solutions</title>
-<meta name="description" content="Techova Solutions builds AI agents that run inside your own cloud: FinOps, DataOps and operations agents with human approval built in.">
+<meta name="description" content="Techova Solutions builds AI agents that run inside your own cloud, and delivers Databricks, Power BI, Power Platform, DevOps and FinOps services on Azure.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -92,7 +92,7 @@ nav.primary a.cta { color: var(--accent-ink); background: var(--accent); padding
 .caption { font-size: var(--step--1); color: var(--muted); margin-top: 0.7rem; }
 
 /* Sections */
-section.block { padding-block: 4.5rem; border-top: 1px solid var(--line); }
+section.block { padding-block: 4.5rem; border-top: 1px solid var(--line); scroll-margin-top: 4rem; }
 section.block h2 { font-size: var(--step-3); margin-top: 0.6rem; max-width: 40rem; }
 section.block .intro { color: var(--muted); max-width: 40rem; margin-top: 0.9rem; font-size: 1.05rem; }
 
@@ -152,6 +152,7 @@ footer.site a { color: var(--muted); }
     </a>
     <nav class="primary" aria-label="Main">
       <a href="#agents">Agents</a>
+      <a href="#services">Services</a>
       <a href="#approach">How we work</a>
       <a href="#stack">Stack</a>
       <a class="cta" href="#contact">Start a project</a>
@@ -163,12 +164,13 @@ footer.site a { color: var(--muted); }
   <section class="hero">
     <div class="wrap">
       <div>
-        <div class="eyebrow">AI agents for cloud and data teams</div>
+        <div class="eyebrow">AI agents and data platform services</div>
         <h1>AI agents that work inside your own cloud</h1>
-        <p class="lede">We design and build AI agents that read your cost, infrastructure and data platforms, explain what changed, and propose fixes your engineers approve. Your data stays in your tenant.</p>
+        <p class="lede">We design and build AI agents that read your cost, infrastructure and data platforms, explain what changed, and propose fixes your engineers approve. Your data stays in your tenant. We also build and run the platforms underneath: Databricks, Power BI, Power Platform, DevOps and FinOps.</p>
         <div class="actions">
           <a class="btn primary" href="#contact">Book a discovery call</a>
           <a class="btn ghost" href="#agents">See the agents</a>
+          <a class="btn ghost" href="#services">Our services</a>
         </div>
       </div>
       <figure style="margin:0; min-width:0">
@@ -260,6 +262,56 @@ footer.site a { color: var(--muted); }
     </div>
   </section>
 
+  <section class="block" id="services">
+    <div class="wrap">
+      <div class="eyebrow">Services</div>
+      <h2>Data, platform and cost services on Azure</h2>
+      <p class="intro">The same people who build our agents deliver the platforms they run on. Hire us for a fixed-scope project, as an extension of your own team, or for ongoing support.</p>
+      <div class="agents">
+        <article class="agent">
+          <div class="head"><h3>Databricks</h3></div>
+          <p>Lakehouse design and build on Azure Databricks: bronze, silver and gold layers, Unity Catalog governance, reliable jobs, and migration from older warehouses.</p>
+          <dl>
+            <dt>Delivers</dt><dd>Medallion pipelines, Unity Catalog setup, tuned clusters and jobs</dd>
+            <dt>Uses</dt><dd>Azure Databricks, Delta Lake, Unity Catalog, Data Factory</dd>
+          </dl>
+        </article>
+        <article class="agent">
+          <div class="head"><h3>Power BI</h3></div>
+          <p>Semantic models, reports and dashboards people trust: clean data models, DAX measures, row-level security, and reports kept in Git and deployed through pipelines.</p>
+          <dl>
+            <dt>Delivers</dt><dd>Semantic models, reports, deployment pipelines</dd>
+            <dt>Uses</dt><dd>Power BI, Fabric, DAX, Power BI projects in Git</dd>
+          </dl>
+        </article>
+        <article class="agent">
+          <div class="head"><h3>Power Platform</h3></div>
+          <p>Business apps and automated workflows without a long development project: approvals, forms and internal tools, with environments and data policies set up properly.</p>
+          <dl>
+            <dt>Delivers</dt><dd>Power Apps, Power Automate flows, Copilot Studio agents, governance</dd>
+            <dt>Uses</dt><dd>Power Apps, Power Automate, Dataverse, Copilot Studio</dd>
+          </dl>
+        </article>
+        <article class="agent">
+          <div class="head"><h3>DevOps</h3></div>
+          <p>Infrastructure as code and delivery pipelines for Azure: landing zones, reusable Terraform modules, CI/CD, and monitoring your team can run on its own.</p>
+          <dl>
+            <dt>Delivers</dt><dd>Terraform modules, CI/CD pipelines, landing zones, monitoring</dd>
+            <dt>Uses</dt><dd>Terraform, Azure DevOps, GitHub Actions, Azure Monitor</dd>
+          </dl>
+        </article>
+        <article class="agent">
+          <div class="head"><h3>FinOps</h3></div>
+          <p>Cloud cost visibility and savings following the FinOps Framework: tagging and cost allocation, budgets and forecasts, rightsizing, reservations and savings plans, and a monthly cost review.</p>
+          <dl>
+            <dt>Delivers</dt><dd>Cost reports, allocation and tag policy, savings plan, monthly review</dd>
+            <dt>Uses</dt><dd>Azure Cost Management, FinOps toolkit, Power BI, our FinOps agent</dd>
+          </dl>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="block" id="approach">
     <div class="wrap">
       <div class="eyebrow">How we work</div>
@@ -298,6 +350,8 @@ footer.site a { color: var(--muted); }
         <div><h3>Agent frameworks</h3><ul><li>Claude Agent SDK</li><li>LangGraph</li><li>Microsoft Agent Framework</li><li>MCP</li></ul></div>
         <div><h3>Data</h3><ul><li>Azure Databricks</li><li>Delta Lake</li><li>Azure SQL</li><li>Power BI</li></ul></div>
         <div><h3>Platform</h3><ul><li>Azure</li><li>Terraform</li><li>Azure DevOps</li><li>GitHub Actions</li><li>Python</li></ul></div>
+        <div><h3>Power Platform</h3><ul><li>Power Apps</li><li>Power Automate</li><li>Dataverse</li><li>Copilot Studio</li></ul></div>
+        <div><h3>FinOps</h3><ul><li>Azure Cost Management</li><li>FinOps toolkit</li><li>FOCUS</li><li>Azure Advisor</li></ul></div>
       </div>
     </div>
   </section>
@@ -306,12 +360,12 @@ footer.site a { color: var(--muted); }
     <div class="wrap">
       <div>
         <div class="eyebrow">Contact</div>
-        <h2>Tell us about the task you want an agent to take over</h2>
+        <h2>Tell us about the agent, platform or project you have in mind</h2>
         <p class="intro">A short email is enough. These details help us reply with something concrete:</p>
         <ul class="ask-list">
-          <li>The task and who does it today</li>
+          <li>The task or project, and who does it today</li>
           <li>Where the data lives (Azure, Databricks, other)</li>
-          <li>What the agent may and may not change</li>
+          <li>Whether you need a project, extra people for your team, or ongoing support</li>
         </ul>
       </div>
       <div class="contact-card">
@@ -338,6 +392,7 @@ footer.site a { color: var(--muted); }
     <span>© <span id="year">2026</span> Techova Solutions LLP</span>
     <nav aria-label="Footer">
       <a href="#agents">Agents</a>
+      <a href="#services">Services</a>
       <a href="#approach">How we work</a>
       <a href="#contact">Contact</a>
     </nav>
